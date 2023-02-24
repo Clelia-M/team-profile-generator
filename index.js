@@ -13,6 +13,8 @@ const render = require("./src/page-template.js");
 // Empty array to store the team members
 const employees = [];
 
+
+// MANAGER SECTION CODE
 inquirer.prompt([
     { // manager's name
         type: 'input',
@@ -35,7 +37,7 @@ inquirer.prompt([
         message: "What is the team manager's office number?"
     },
 
-]).then(response => {
+]).then((response) => {
     // populate manager info
     const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
     employees.push(manager);
@@ -43,6 +45,7 @@ inquirer.prompt([
     promptForNextEmployee();
 })
 
+// NEXT EMPLOYEE SECTION CODE
 const promptForNextEmployee = () => {
     inquirer.prompt([{
         // choice of 3
@@ -51,7 +54,7 @@ const promptForNextEmployee = () => {
         message: "What type of team memeber would you like to add?",
         choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
     },
-    ]).then(response => {
+    ]).then((response) => {
         // if engineer
         if (response.role === 'Engineer') {
             // promptForEngineer
@@ -67,6 +70,7 @@ const promptForNextEmployee = () => {
     });
 };
 
+// ENGINEER SECTION CODE
 const promptForEngineer = () => {
     inquirer.prompt([
         { // engineer's name
@@ -89,16 +93,39 @@ const promptForEngineer = () => {
             name: 'github',
             message: "What is the engineer's GitHub username?"
         },
-]).then(response => {
+    ]).then((response) => {
         // add new engineer to employees array
+        const engineer = new Engineer(response.name, response.id, response.email, response.github);
+        employees.push(engineer);
         // promptForNextEmployee
+        promptForNextEmployee();
     })
 }
 
+// INTERN SECTION CODE
 const promptForIntern = () => {
-    inquirer.prompt([{
-        //intern questions
-    }]).then(response => {
+    inquirer.prompt([
+        { //intern questions
+            type: 'input',
+            name: 'name',
+            message: "What is the intern's name?"
+        },
+        { // intern's id
+            type: 'input',
+            name: 'id',
+            message: "What is the intern's ID?",
+        },
+        { // intern's email
+            type: 'input',
+            name: 'email',
+            message: "What is the intern's email address?"
+        },
+        { // intern's school
+            type: 'input',
+            name: 'school',
+            message: "What is the intern's school?"
+        },
+    ]).then(response => {
         // add new intern to employees array
         // promptForNextEmployee
     })
