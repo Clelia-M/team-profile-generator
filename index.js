@@ -99,8 +99,8 @@ const promptForEngineer = () => {
         employees.push(engineer);
         // promptForNextEmployee
         promptForNextEmployee();
-    })
-}
+    });
+};
 
 // INTERN SECTION CODE
 const promptForIntern = () => {
@@ -125,12 +125,14 @@ const promptForIntern = () => {
             name: 'school',
             message: "What is the intern's school?"
         },
-    ]).then(response => {
+    ]).then((response) => {
         // add new intern to employees array
+        const newIntern = new Intern(response.name, response.ide, response.email, response.school);
         // promptForNextEmployee
-    })
-}
+        promptForNextEmployee();
+    });
+};
 
 const buildPage = () => {
     // render(myArrayOfTeamMembers)
-}
+};
