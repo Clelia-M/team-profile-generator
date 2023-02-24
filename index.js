@@ -229,21 +229,27 @@ const promptForIntern = () => {
         },
     ]).then((response) => {
         // add new intern to employees array
-        const newIntern = new Intern(response.name, response.ide, response.email, response.school);
-        console.log('Intern added:', Intern);
+        const intern = new Intern(response.name, response.id, response.email, response.school);
+        employees.push(intern);
+        console.log('Intern added:', intern);
         // promptForNextEmployee
         promptForNextEmployee();
     });
 };
 
+
 const buildPage = (employees) => {
-    // render(myArrayOfTeamMembers)
-    const html = render(employees);
-    fs.writeFile(outputPath, html, (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(`Team page generated at ${outputPath}`);
-    });
+    try { // render(myArrayOfTeamMembers)
+      const html = render(employees);
+      fs.writeFile(outputPath, html, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(`Team page generated at ${outputPath}`);
+      });
+    } catch (err) {
+      console.error(err);
+      return;
+    }
   };
