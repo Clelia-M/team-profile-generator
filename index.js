@@ -176,22 +176,54 @@ const promptForIntern = () => {
         { //intern questions
             type: 'input',
             name: 'name',
-            message: "What is the intern's name?"
+            message: "What is the intern's name?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter a name";
+                }
+                return true;
+            }
         },
         { // intern's id
             type: 'input',
             name: 'id',
             message: "What is the intern's ID?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter an employee ID";
+                }
+                // check if input is a number
+                if (isNaN(input)) {
+                    return "Please enter a valid employee ID";
+                } 
+                return true;
+            }
         },
         { // intern's email
             type: 'input',
             name: 'email',
-            message: "What is the intern's email address?"
+            message: "What is the intern's email address?",
+            validate: input => {
+                if (!input) {
+                    return "Please enter an email address";
+                }
+                // check if input is a valid email format
+                if (!/\S+@\S+\.\S+/.test(input)) {
+                    return "Please enter a valid email address";
+                }
+                return true;
+            }
         },
         { // intern's school
             type: 'input',
             name: 'school',
-            message: "What is the intern's school?"
+            message: "What is the intern's school?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter a School name";
+                }
+                return true;
+            }
         },
     ]).then((response) => {
         // add new intern to employees array
