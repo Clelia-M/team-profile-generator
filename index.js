@@ -19,22 +19,58 @@ inquirer.prompt([
     { // manager's name
         type: 'input',
         name: 'name',
-        message: "What is the team manager's name?"
+        message: "What is the team manager's name?",
+        validate: input => {
+            if(!input) {
+                return "Please enter a name";
+            }
+            return true;
+        }
     },
     { // manager's id
         type: 'input',
         name: 'id',
         message: "what is the team manager's employee ID?",
+        validate: input => {
+            if(!input) {
+                return "Please enter an employee ID";
+            }
+            // check if input is a number
+            if (isNaN(input)) {
+                return "Please enter a valid employee ID";
+            } 
+            return true;
+        }
     },
     { // manager's email
         type: 'input',
         name: 'email',
-        message: "What is the team manager's email address?"
+        message: "What is the team manager's email address?",
+        validate: input => {
+            if (!input) {
+                return "Please enter an email address";
+            }
+            // check if input is a valid email format
+            if (!/\S+@\S+\.\S+/.test(input)) {
+                return "Please enter a valid email address";
+            }
+            return true;
+        }
     },
     { // manager's office number
         type: 'input',
         name: 'officeNumber',
-        message: "What is the team manager's office number?"
+        message: "What is the team manager's office number?",
+        validate: input => {
+            if (!input) {
+                return "Please enter an office number";
+            }
+            // check if input is a number
+            if (isNaN(input)) {
+                return "Please enter a valid office number";
+            }
+            return true;
+        }
     },
 
 ]).then((response) => {
