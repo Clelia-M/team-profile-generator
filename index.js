@@ -15,25 +15,25 @@ const employees = [];
 
 inquirer.prompt([
     { // manager's name
-    type: 'input',
-    name: 'name',
-    message: "What is the team manager's name?"
-}, 
-{ // manager's id
-    type: 'input',
-    name: 'id',
-    message: "what is the team manager's employee ID?",
-},
-{ // manager's email
-    type: 'input',
-    name: 'email',
-    message: "What is the team manager's email address?"
-}, 
-{ // manager's office number
-    type: 'input',
-    name: 'officeNumber',
-    message: "What is the team manager's office number?"
-},
+        type: 'input',
+        name: 'name',
+        message: "What is the team manager's name?"
+    },
+    { // manager's id
+        type: 'input',
+        name: 'id',
+        message: "what is the team manager's employee ID?",
+    },
+    { // manager's email
+        type: 'input',
+        name: 'email',
+        message: "What is the team manager's email address?"
+    },
+    { // manager's office number
+        type: 'input',
+        name: 'officeNumber',
+        message: "What is the team manager's office number?"
+    },
 
 ]).then(response => {
     // populate manager info
@@ -46,7 +46,12 @@ inquirer.prompt([
 const promptForNextEmployee = () => {
     inquirer.prompt([{
         // choice of 3
-    }]).then(response => {
+        type: 'list',
+        name: 'role',
+        message: "What type of team memeber would you like to add?",
+        choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
+    },
+    ]).then(response => {
         // if engineer
         //    promptForEngineer
         // else if intern
@@ -75,5 +80,5 @@ const promptForIntern = () => {
 }
 
 const buildPage = () => {
-// render(myArrayOfTeamMembers)
+    // render(myArrayOfTeamMembers)
 }
