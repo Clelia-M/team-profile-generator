@@ -37,7 +37,10 @@ inquirer.prompt([
 
 ]).then(response => {
     // populate manager info
+    const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
+    employees.push(manager);
     // promptForNexEmployee ()
+    promptForNextEmployee();
 })
 
 const promptForNextEmployee = () => {
