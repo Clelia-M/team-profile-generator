@@ -79,6 +79,7 @@ inquirer.prompt([
     employees.push(manager);
     // promptForNexEmployee ()
     promptForNextEmployee();
+    console.log(employees);
 })
 
 // NEXT EMPLOYEE SECTION CODE
@@ -165,6 +166,7 @@ const promptForEngineer = () => {
         // add new engineer to employees array
         const engineer = new Engineer(response.name, response.id, response.email, response.github);
         employees.push(engineer);
+        console.log('Engineer added:', engineer);
         // promptForNextEmployee
         promptForNextEmployee();
     });
@@ -228,11 +230,20 @@ const promptForIntern = () => {
     ]).then((response) => {
         // add new intern to employees array
         const newIntern = new Intern(response.name, response.ide, response.email, response.school);
+        console.log('Intern added:', Intern);
         // promptForNextEmployee
         promptForNextEmployee();
     });
 };
 
-const buildPage = () => {
+const buildPage = (employees) => {
     // render(myArrayOfTeamMembers)
-};
+    const html = render(employees);
+    fs.writeFile(outputPath, html, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(`Team page generated at ${outputPath}`);
+    });
+  };
