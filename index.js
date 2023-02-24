@@ -73,13 +73,12 @@ inquirer.prompt([
         }
     },
 
-]).then((response) => {
+]).then(response => {
     // populate manager info
     const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
     employees.push(manager);
     // promptForNexEmployee ()
     promptForNextEmployee();
-    console.log(employees);
 })
 
 // NEXT EMPLOYEE SECTION CODE
@@ -88,10 +87,10 @@ const promptForNextEmployee = () => {
         // choice of 3
         type: 'list',
         name: 'role',
-        message: "What type of team memeber would you like to add?",
+        message: "What type of team member would you like to add?",
         choices: ['Engineer', 'Intern', 'I do not want to add any more team members']
     },
-    ]).then((response) => {
+    ]).then(response => {
         // if engineer
         if (response.role === 'Engineer') {
             // promptForEngineer
@@ -102,7 +101,8 @@ const promptForNextEmployee = () => {
             promptForIntern();
         } else {
             // use the functionality from page-template to generate the team
-            buildPage();
+            console.log(employees);
+            buildPage();          
         }
     });
 };
@@ -162,7 +162,7 @@ const promptForEngineer = () => {
                 return true;
             }
         },
-    ]).then((response) => {
+    ]).then(response => {
         // add new engineer to employees array
         const engineer = new Engineer(response.name, response.id, response.email, response.github);
         employees.push(engineer);
@@ -238,8 +238,9 @@ const promptForIntern = () => {
 };
 
 
+
 const buildPage = (employees) => {
-    try { // render(myArrayOfTeamMembers)
+    try {
       const html = render(employees);
       fs.writeFile(outputPath, html, (err) => {
         if (err) {
