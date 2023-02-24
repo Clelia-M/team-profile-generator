@@ -53,13 +53,19 @@ const promptForNextEmployee = () => {
     },
     ]).then(response => {
         // if engineer
-        //    promptForEngineer
-        // else if intern
-        //    promptForIntern
-        // else
-        //    use the functionality from page-template to generate the team
-    })
-}
+        if (response.role === 'Engineer') {
+            // promptForEngineer
+            promptForEngineer();
+            // else if intern
+        } else if (response.role === 'Intern') {
+            // promptForIntern
+            promptForIntern();
+        } else {
+            // use the functionality from page-template to generate the team
+            buildPage();
+        }
+    });
+};
 
 const promptForEngineer = () => {
     inquirer.prompt([{
