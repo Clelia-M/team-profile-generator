@@ -10,16 +10,32 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 // Empty array to store the team members
 const employees = [];
 
+inquirer.prompt([
+    { // manager's name
+    type: 'input',
+    name: 'name',
+    message: "What is the team manager's name?"
+}, 
+{ // manager's id
+    type: 'input',
+    name: 'id',
+    message: "what is the team manager's employee ID?",
+},
+{ // manager's email
+    type: 'input',
+    name: 'email',
+    message: "What is the team manager's email address?"
+}, 
+{ // manager's office number
+    type: 'input',
+    name: 'officeNumber',
+    message: "What is the team manager's office number?"
+},
 
-inquirer.prompt([{
-    //manager questions
-}]).then(response => {
+]).then(response => {
     // populate manager info
     // promptForNexEmployee ()
 })
