@@ -112,22 +112,54 @@ const promptForEngineer = () => {
         { // engineer's name
             type: 'input',
             name: 'name',
-            message: "What is the engineer's name?"
+            message: "What is the engineer's name?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter a name";
+                }
+                return true;
+            }
         },
         { // engineer's id
             type: 'input',
             name: 'id',
             message: "What is the engineer's employee ID?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter an employee ID";
+                }
+                // check if input is a number
+                if (isNaN(input)) {
+                    return "Please enter a valid employee ID";
+                } 
+                return true;
+            }
         },
         { // engineer's email
             type: 'input',
             name: 'email',
-            message: "What is the engineer's email address?"
+            message: "What is the engineer's email address?",
+            validate: input => {
+                if (!input) {
+                    return "Please enter an email address";
+                }
+                // check if input is a valid email format
+                if (!/\S+@\S+\.\S+/.test(input)) {
+                    return "Please enter a valid email address";
+                }
+                return true;
+            }
         },
         { // engineer's GitHub
             type: 'input',
             name: 'github',
-            message: "What is the engineer's GitHub username?"
+            message: "What is the engineer's GitHub username?",
+            validate: input => {
+                if(!input) {
+                    return "Please enter a GitHub username";
+                }
+                return true;
+            }
         },
     ]).then((response) => {
         // add new engineer to employees array
