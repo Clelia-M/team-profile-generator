@@ -20,4 +20,4 @@ To use this application, you will first need to clone the repository onto your l
   If you have any questions abut this application, please feel free to contact me directly at clelia.mangione@gmail.com. You can find more of projects at Clelia-M.
 
   ## Final Results
-  ![final results](https://github.com/Clelia-M/readme-generator/blob/70faec14690ac982fedcb40be8a67fadb0a59ab1/assets/Node%20js%20Challenge%2011%20Screenshot.png)
+  ![final results](https://github.com/Clelia-M/team-profile-generator/blob/cece39aa9b180552fef6898d75a55aad2db5be59/assets/Team%20Html%20final%20result.png)
