@@ -15,6 +15,7 @@ const employees = [];
 
 
 // MANAGER SECTION CODE
+const promptForManager = () => {
 inquirer.prompt([
     { // manager's name
         type: 'input',
@@ -80,6 +81,7 @@ inquirer.prompt([
     // promptForNexEmployee ()
     promptForNextEmployee();
 })
+}
 
 // NEXT EMPLOYEE SECTION CODE
 const promptForNextEmployee = () => {
@@ -101,7 +103,7 @@ const promptForNextEmployee = () => {
             promptForIntern();
         } else {
             // use the functionality from page-template to generate the team
-            console.log(employees);
+            // console.log(employees);
             buildPage();          
         }
     });
@@ -166,7 +168,7 @@ const promptForEngineer = () => {
         // add new engineer to employees array
         const engineer = new Engineer(response.name, response.id, response.email, response.github);
         employees.push(engineer);
-        console.log('Engineer added:', engineer);
+        // console.log('Engineer added:', engineer);
         // promptForNextEmployee
         promptForNextEmployee();
     });
@@ -231,26 +233,19 @@ const promptForIntern = () => {
         // add new intern to employees array
         const intern = new Intern(response.name, response.id, response.email, response.school);
         employees.push(intern);
-        console.log('Intern added:', intern);
+        // console.log('Intern added:', intern);
         // promptForNextEmployee
         promptForNextEmployee();
     });
 };
 
-
-
-const buildPage = (employees) => {
-    try {
-      const html = render(employees);
-      fs.writeFile(outputPath, html, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log(`Team page generated at ${outputPath}`);
-      });
-    } catch (err) {
-      console.error(err);
-      return;
+// renders the HTML file
+const buildPage = () => {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR);
     }
+  const htmlpage = render(employees)
+  fs.writeFileSync(outputPath, htmlpage)
   };
+  
+  promptForManager()
