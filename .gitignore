@@ -10467,3 +10467,5 @@ node_modules/rxjs/operators/windowWhen.d.ts
 node_modules/rxjs/operators/withLatestFrom.d.ts
 node_modules/rxjs/operators/zip.d.ts
 node_modules/rxjs/operators/zipAll.d.ts
+assets/.DS_Store
+.DS_Store
